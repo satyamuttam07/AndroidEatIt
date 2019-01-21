@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:inputType="phone"
+            android:textSize="34sp"
             android:text="7080171737"/>
 
         <EditText

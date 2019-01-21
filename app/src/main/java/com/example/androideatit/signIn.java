@@ -1,5 +1,6 @@
 package com.example.androideatit;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -38,11 +39,14 @@ public class signIn extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                final ProgressDialog mDialog = new ProgressDialog(signIn.this);
+                mDialog.setMessage("Please Wait...");
+                mDialog.show();
                 table_user.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.child(edtPhone.getText().toString()).exists()) {
+                            mDialog.dismiss();
                             User user = dataSnapshot.child(edtPhone.getText().toString()).getValue(User.class);
                             user.setPhone(edtPhone.getText().toString());
                             if (user.getPassword().equals(edtPassword.getText().toString())) {
@@ -55,6 +59,7 @@ public class signIn extends AppCompatActivity {
                                 Toast.makeText(signIn.this, "Incorrect Password!", Toast.LENGTH_SHORT).show();
                             }
                         }else{
+                            mDialog.dismiss();
                             Toast.makeText(signIn.this, "User doesnt exist!", Toast.LENGTH_SHORT).show();
                         }
                     }

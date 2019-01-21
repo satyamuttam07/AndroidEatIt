@@ -4,14 +4,24 @@ public class User {
     private String Name;
     private String Password;
     private String Phone;
+    private String IsStaff;
 
     public User(String name, String password) {
         Name = name;
         Password = password;
+        IsStaff = "false";
     }
 
     public  User(){
 
+    }
+
+    public String getIsStaff() {
+        return IsStaff;
+    }
+
+    public void setIsStaff(String isStaff) {
+        IsStaff = isStaff;
     }
 
     public String getPhone() {
